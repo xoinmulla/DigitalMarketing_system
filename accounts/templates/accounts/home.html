@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Digital Marketing System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Enhanced Glassmorphism Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.15); /* Slightly more transparent */
+            backdrop-filter: blur(15px); /* Increased blur for better effect */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Deeper shadow */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+        }
+        .navbar-brand {
+            font-weight: 700; /* Even bolder */
+            color: #333 !important; /* Darker text */
+            font-size: 1.75rem; /* Slightly larger */
+        }
+        .nav-link {
+            color: #555 !important; /* Darker link text */
+            font-weight: 600;
+            position: relative; /* For the hover effect */
+            padding: 0.75rem 1.2rem !important; /* Adjusted padding */
+        }
+        .nav-link:hover {
+            color: #ffc107 !important; /* Brighter hover color */
+        }
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            width: 0%;
+            height: 2px;
+            background-color: #ffc107;
+            transition: width 0.3s ease-in-out;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::before {
+            width: 80%;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0, 0, 0, 0.7)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Hero section with gradient overlay and more prominent text */
+        .hero {
+            background: url('https://i.pinimg.com/474x/42/73/7d/42737d0861f449f752beea88171b3669.jpg') center/cover no-repeat;
+            color: #fff;
+            position: relative;
+            text-align: center;
+            padding: 150px 0; /* Increased padding */
+            z-index: 1;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)); /* Gradient overlay */
+            z-index: -1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 3.5rem; /* Larger title */
+            font-weight: 800; /* More emphasis */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Text shadow for better readability */
+        }
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        }
+        .hero .btn-warning {
+            font-size: 1.1rem;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out;
+        }
+        .hero .btn-warning:hover {
+            transform: translateY(-3px);
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px; /* Increased gap */
+            margin-top: 40px; /* Increased margin */
+        }
+        .stat {
+            font-size: 1.75rem; /* Larger stats */
+            font-weight: bold;
+            color: #ffc107;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+        .stat i {
+            margin-right: 10px;
+        }
+
+        /* Enhanced Features Section with icons and better spacing */
+        .features {
+            padding: 70px 0; /* Increased padding */
+            background: #f8f9fa;
+        }
+        .features h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 700;
+            color: #333;
+        }
+        .feature-box {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease-in-out;
+        }
+        .feature-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        .feature-box i {
+            font-size: 2.5rem;
+            color: #ffc107;
+            margin-bottom: 20px;
+        }
+        .feature-box h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .feature-box p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Enhanced Ad Display Section with grid layout */
+        .ad-section {
+            padding: 60px 0;
+            background-color: #eee;
+        }
+        .ad-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+            color: #333;
+        }
+        .ad-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+        .ad-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        .ad-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .ad-card-body {
+            padding: 20px;
+            text-align: center;
+        }
+        .ad-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .ad-card-text {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .ad-card .btn-success {
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            background-color: #28a745;
+            border-color: #28a745;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .ad-card .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        /* Enhanced Footer */
+        .footer {
+            background: #333; /* Darker background */
+            color: #eee; /* Lighter text */
+            padding: 40px 0; /* Increased padding */
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .footer p {
+            margin-bottom: 10px;
+        }
+        .footer a {
+            color: #ffc107;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+        .footer a:hover {
+            color: #e0a800;
+        }
+        .logout-button {
+            background: none;
+            border: none;
+            color: #555 !important;
+            font-weight: 600;
+            padding: 0.75rem 1.2rem !important;
+            cursor: pointer;
+            position: relative;
+        }
+        .logout-button::before {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            width: 0%;
+            height: 2px;
+            background-color: #dc3545; /* Red color for logout */
+            transition: width 0.3s ease-in-out;
+            transform: translateX(-50%);
+        }
+        .logout-button:hover {
+            color: #dc3545 !important;
+        }
+        .logout-button:hover::before {
+            width: 80%;
+        }
+
+        body {
+            background-color: #f8f9fa;
+        }
+        .ad-card {
+            transition: transform 0.3s;
+        }
+        .ad-card:hover {
+            transform: scale(1.05);
+        }
+        .ad-image {
+            max-height: 200px;
+            object-fit: cover;
+        }
+        .navbar {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #000000 !important;
+        }
+        .nav-link {
+            color: #000000 !important;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: #ffcc00 !important;
+        }
+        /* Glassmorphism Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #000000 !important;
+        }
+        .nav-link {
+            color: #000000 !important;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: #ffcc00 !important;
+        }
+
+        /* Hero section */
+        .hero {
+            background: url('https://i.pinimg.com/474x/42/73/7d/42737d0861f449f752beea88171b3669.jpg') center/cover no-repeat;
+            color: white;
+            position: relative;
+            text-align: center;
+            padding: 120px 0;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        .stat {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        /* Features section */
+        .features {
+            padding: 50px 0;
+            background: #f8f9fa;
+        }
+        .feature-box {
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .feature-box:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Ads section */
+        .ad-card {
+            transition: transform 0.3s;
+        }
+        .ad-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            background: #222;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-chart-line me-2"></i> Digital Marketing Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"><i class="fas fa-bullhorn me-1"></i> Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'campaign_list' %}"><i class="fas fa-bullhorn me-1"></i> Campaigns</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'ad_list' %}"><i class="fas fa-ad me-1"></i> Ads</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'create_campaign' %}"><i class="fas fa-plus-circle me-1"></i> Add Campaign</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'create_ad' %}"><i class="fas fa-plus-square me-1"></i> Add Ads</a></li>
+                        <li class="nav-item">
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="logout-button"><i class="fas fa-sign-out-alt me-1"></i> Logout</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt me-1"></i> Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user-plus me-1"></i> Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <h1 class="display-4">Supercharge Your Marketing Strategy</h1>
+            <p class="lead">Manage campaigns, track analytics, and optimize performance in real-time.</p>
+            <a href="{% url 'campaign_list'%}" class="btn btn-lg btn-warning">Get Started</a>
+            <div class="stats">
+                <div class="stat">📊 24+ Campaigns</div>
+                <div class="stat">🎯 50+ Impressions</div>
+                <div class="stat">💰 $1000+ Revenue Generated</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    
+    
+    <!-- Ad Display Section -->
+    <section class="container my-5">
+        <h2 class="text-center mb-4">Top Performing Ads</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-lg ad-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4vRz_obFX-Gy5K6-uC42UW34aY1LR9BFwLg&s" class="card-img-top" alt="Ad Image">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Ad Title</h5>
+                        <p class="card-text">Views: 12K | Clicks: 4K</p>
+                        <a href="#" class="btn btn-success">View Ad</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-lg ad-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRzhbzwX6MZwz2H8D3Zlb1gUx94BjvaQMSjA&s" class="card-img-top" alt="Ad Image">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">SEO Mastery</h5>
+                        <p class="card-text">Views: 15K | Clicks: 5K</p>
+                        <a href="#" class="btn btn-success">View Ad</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Digital Marketing System | <a href="#" class="text-light">Privacy Policy</a></p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

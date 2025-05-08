@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Digital Marketing System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Glassmorphism Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #000000 !important;
+        }
+        .nav-link {
+            color: #000000 !important;
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            color: #ffcc00 !important;
+        }
+
+        /* Hero section */
+        .hero {
+            background: url('https://i.pinimg.com/474x/42/73/7d/42737d0861f449f752beea88171b3669.jpg') center/cover no-repeat;
+            color: white;
+            position: relative;
+            text-align: center;
+            padding: 120px 0;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        .stat {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        /* Features section */
+        .features {
+            padding: 50px 0;
+            background: #f8f9fa;
+        }
+        .feature-box {
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .feature-box:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Ads section */
+        .ad-card {
+            transition: transform 0.3s;
+        }
+        .ad-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            background: #222;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Digital Marketing</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'campaign_list' %}">Campaign List</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'ad_list' %}">Ad List</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'create_campaign' %}">Add Campaign</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'create_campaign' %}">Add Ads</a></li>
+
+<!-- Example in base.html or your template -->
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit">Logout</button>
+                        </form>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <h1 class="display-4">Supercharge Your Marketing Strategy</h1>
+            <p class="lead">Manage campaigns, track analytics, and optimize performance in real-time.</p>
+            <a href="{% url 'campaign_list'%}" class="btn btn-lg btn-warning">Get Started</a>
+            <div class="stats">
+                <div class="stat">📊 24+ Campaigns</div>
+                <div class="stat">🎯 50+ Impressions</div>
+                <div class="stat">💰 $1000+ Revenue Generated</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    
+    
+    <!-- Ad Display Section -->
+    <section class="container my-5">
+        <h2 class="text-center mb-4">Top Performing Ads</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-lg ad-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4vRz_obFX-Gy5K6-uC42UW34aY1LR9BFwLg&s" class="card-img-top" alt="Ad Image">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Ad Title</h5>
+                        <p class="card-text">Views: 12K | Clicks: 4K</p>
+                        <a href="#" class="btn btn-success">View Ad</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-lg ad-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRzhbzwX6MZwz2H8D3Zlb1gUx94BjvaQMSjA&s" class="card-img-top" alt="Ad Image">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">SEO Mastery</h5>
+                        <p class="card-text">Views: 15K | Clicks: 5K</p>
+                        <a href="#" class="btn btn-success">View Ad</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Digital Marketing System | <a href="#" class="text-light">Privacy Policy</a></p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
